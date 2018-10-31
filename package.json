@@ -9,9 +9,10 @@
   "scripts": {
     "build": "webpack",
     "start": "nodemon server/server.js",
-    "dropdb": "mysql -u root <database/schema.sql",
+    "dropdb": "mysql -u root < database/schema.sql",
     "manualdb": "mysql -u root",
-    "seed": "node database/seedGenerator.js"
+    "seed": "node database/seedGenerator.js",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -46,6 +47,8 @@
     "file-loader": "^2.0.0",
     "jest-environment-enzyme": "^7.0.0",
     "jest-enzyme": "^7.0.0",
+    "jest": "^23.6.0",
+    "morgan": "^1.9.1",
     "prettier": "^1.14.3",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",

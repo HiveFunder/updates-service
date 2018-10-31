@@ -24,30 +24,26 @@ sequelize
   });
 
 const User = sequelize.define('user', {
-  userId: { type: Sequelize.INTEGER, primaryKey: true },
-  userName: { type: Sequelize.STRING(100) }
+  userName: Sequelize.STRING(100)
 });
 
-User.sync();
-
 const Project = sequelize.define('project', {
-  projectId: { type: Sequelize.INTEGER, primaryKey: true },
-  projectName: { type: Sequelize.STRING }
+  projectName: Sequelize.STRING
+});
+
+const Update = sequelize.define('update', {
+  title: Sequelize.STRING,
+  body: Sequelize.TEXT,
+  likes: Sequelize.INTEGER,
+  pubDate: Sequelize.DATE
 });
 
 Project.belongsTo(User, { foreignKey: 'ownerId' });
-Project.sync();
-
-const Update = sequelize.define('update', {
-  id: { type: Sequelize.INTEGER, primaryKey: true },
-  title: { type: Sequelize.STRING },
-  body: { type: Sequelize.TEXT },
-  likes: { type: Sequelize.INTEGER },
-  pubDate: { type: Sequelize.DATE }
-});
-
 Update.belongsTo(User, { foreignKey: 'postedBy' });
 Update.belongsTo(Project, { foreignKey: 'projectId' });
+
+User.sync();
+Project.sync();
 Update.sync();
 
 exports.User = User;
