@@ -1,6 +1,6 @@
 /* eslint-evn jest */
-import App from './app.jsx';
-import Preview from './components/preview.jsx';
+import App from './app';
+import Preview from './components/preview';
 import dummyData from './dummyData.json';
 // import { shallow } from 'enzyme';
 
