@@ -19,10 +19,12 @@ app.get('/:projectId/updates', (req, res) => {
     where: {
       projectId: req.params.projectId
     }
-  }).then(updates => {
-    res.send(updates);
-  });
+  })
+    .then(updates => {
+      res.send(updates);
+    })
+    .catch(err => console.error(err));
 });
 
 app.listen(port);
-console.log(`Listening at PORT: ${port}`);
+console.log(`Listening at PORT: ${port}`); // eslint-disable-line
