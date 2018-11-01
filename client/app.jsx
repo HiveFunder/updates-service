@@ -2,7 +2,7 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './app.css';
-import Preview from './components/preview.jsx'
+import Preview from './components/preview';
 
 const React = require('react');
 const ReactDom = require('react-dom');

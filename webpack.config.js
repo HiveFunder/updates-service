@@ -8,6 +8,9 @@ module.exports = {
   },
   watch: true,
   mode: 'development',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
