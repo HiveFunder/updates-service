@@ -26,9 +26,8 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run:
-        - npm install
-        - npx install-peerdeps --dev eslint-config-airbnb
+      - run: npm install
+      - run: npx install-peerdeps --dev eslint-config-airbnb
 
       - save_cache:
           paths:
