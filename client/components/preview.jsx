@@ -83,6 +83,6 @@ Preview.propTypes = {
     pubDate: PropTypes.string,
     likes: PropTypes.number
   })
-};
+}
 
 export default Preview;
