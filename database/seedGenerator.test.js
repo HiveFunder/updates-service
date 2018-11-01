@@ -5,7 +5,7 @@ describe('Seed Generation', () => {
     test('Creates one set of User and Project data', () => {
       const single = generateAllSeedData(1);
       expect(single.users.length).toBe(1);
-      expect(single.projects.length).toBe(0);
+      expect(single.projects.length).toBe(1);
     });
 
     test('Creates multiple updates', () => {
