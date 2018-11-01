@@ -2,10 +2,11 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './app.css';
+import Preview from './components/preview.jsx'
 
 const React = require('react');
 const ReactDom = require('react-dom');
-const Preview = require('./components/preview.jsx');
+// const Preview = require('./components/preview.jsx');
 
 const projectId = 2;
 let isLeft = true;

@@ -85,6 +85,4 @@ Preview.propTypes = {
   })
 };
 
-module.exports = Preview;
-
 export default Preview;
