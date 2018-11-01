@@ -70,6 +70,7 @@
   },
   "homepage": "https://github.com/FEC-RSG/updates-service#readme",
   "jest": {
+    "verbose": true,
     "setupTestFrameworkScriptFile": "jest-enzyme",
     "testEnvironment": "enzyme",
     "testEnvironmentOptions": {
