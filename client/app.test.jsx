@@ -12,6 +12,6 @@ describe('<App />', () => {
 
   test('Renders a list of <Preview /> components', () => {
     const wrapper = shallow(<App updates={dummyData} />);
-    expect(wrapper.find(Preview).length).toBe(2);
+    expect(wrapper.find(Preview).length).toBe(3);
   });
 });
