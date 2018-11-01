@@ -1,5 +1,8 @@
+/* eslint-env jest */
+/* global shallow:false, React:false */
+
 import dummyData from '../dummyData.json';
-import Preview from './preview.jsx';
+import Preview from './preview';
 
 const update = dummyData[0];
 
