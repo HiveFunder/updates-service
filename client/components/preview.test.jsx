@@ -8,6 +8,4 @@ describe('<Preview />', () => {
     const wrapper = shallow(<Preview update={update} />);
     expect(wrapper.exists()).toBe(true);
   });
-
-  test('')
 });
