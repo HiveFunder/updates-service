@@ -20,6 +20,7 @@ app.get('/:projectId/updates', (req, res) => {
       projectId: req.params.projectId
     }
   }).then(updates => {
+    console.log(updates);
     res.send(updates);
   });
 });

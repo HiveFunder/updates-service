@@ -17,13 +17,6 @@ function getLikes() {
   return Math.floor(Math.random() * LIKES_LIMIT);
 }
 
-function getUpdateBody() {
-  // from 2 to 15 paragraphs
-  const paragraphCount =
-    Math.floor(Math.random() * (BODY_PARAGRAPH_MAX - BODY_PARAGRAPH_MIN + 1)) + BODY_PARAGRAPH_MIN;
-  return faker.lorem.paragraphs(paragraphCount);
-}
-
 function getTitle() {
   return faker.hacker.phrase();
 }
@@ -34,6 +27,28 @@ function randomNum(min, max) {
 
 function randomDate(start, end) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+function getUpdateBody() {
+  let result = '';
+  // from 2 to 15 paragraphs
+  const paragraphCount =
+    Math.floor(Math.random() * (BODY_PARAGRAPH_MAX - BODY_PARAGRAPH_MIN + 1)) + BODY_PARAGRAPH_MIN;
+
+  //
+  const randomBoldLines = [randomNum(1, 7), randomNum(1, 7)];
+  const randomItalicLines = [randomNum(1, 7), randomNum(1, 7)];
+  for (let i = 0; i < paragraphCount; i += 1) {
+    if (randomBoldLines.includes(i)) {
+      result += `<p><strong>${getTitle()}</strong></p>`;
+    } else if (randomItalicLines.includes(i)) {
+      result += `<p><em>${getTitle()}</em></p>`;
+    } else {
+      const sentenceCount = randomNum(1, 7);
+      result += `<p>${faker.lorem.paragraph(sentenceCount)}</p>`;
+    }
+  }
+  return result;
 }
 
 function intPadLeft(num) {

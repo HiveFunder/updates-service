@@ -8,6 +8,7 @@ const PROJECT_ID = 5;
 
 document.addEventListener('DOMContentLoaded', () => {
   axios.get(`http://localhost:3000/${PROJECT_ID}/updates`).then(response => {
+    console.log(response.data);
     ReactDom.render(<App updates={response.data} />, document.getElementById('root'));
   });
 });
