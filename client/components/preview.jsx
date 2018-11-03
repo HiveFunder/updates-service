@@ -15,6 +15,7 @@ class Preview extends React.Component {
     super(props);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.parseHTML = this.parseBodyHTML.bind(this);
 
     this.state = {
       highlight: false,
