@@ -5,8 +5,8 @@ import styles from './app.css';
 import Preview from './preview';
 
 /* eslint-disable */
-const HOST_URL = process.env.HOST_URL;
-const HOST_PORT = process.env.HOST_PORT;
+const HOST_URL = process.env.HOST_URL || 'http://localhost';
+const HOST_PORT = process.env.HOST_PORT || 3000;
 let isLeft = true;
 /* eslint-enable */
 

@@ -1,12 +1,15 @@
 const Sequelize = require('sequelize');
-const loginInfo = require('./db.env.config');
+// const loginInfo = require('./db.env.config');
 
 function intitializeSequelize() {
   const sequelize = new Sequelize({
-    database: loginInfo.database,
-    username: loginInfo.user,
-    password: loginInfo.password,
-    host: 'db',
+    // database: loginInfo.database,
+    // username: loginInfo.user,
+    // password: loginInfo.password,
+    database: 'kickstarter',
+    username: 'root',
+    password: '',
+    // host: 'db',
     dialect: 'mysql',
     define: {
       allowNull: false
@@ -16,10 +19,12 @@ function intitializeSequelize() {
   const User = sequelize.define('user', {
     userName: Sequelize.STRING(100)
   });
+
   const Project = sequelize.define('project', {
     projectName: Sequelize.STRING
   });
   Project.belongsTo(User, { foreignKey: 'ownerId' });
+
   const Update = sequelize.define('update', {
     title: Sequelize.STRING,
     body: Sequelize.TEXT,

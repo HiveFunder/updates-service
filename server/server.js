@@ -6,9 +6,12 @@ const morgan = require('morgan');
 const cors = require('cors');
 // require('dotenv').config({ path: path.resolve(__dirname, `../../${process.env.NODE_ENV}.env`) });
 // DATABASE DEPENDENCY
-const initializeSequelize = require('../database/db.js');
 
-const { HOST_PORT } = process.env;
+// super test for server
+
+const database = 'postgres';
+
+const HOST_PORT = 3000;
 const app = express();
 
 app.use(cors());
@@ -20,19 +23,45 @@ app.get('/:projectId', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../public/index.html'));
 });
 
-app.get('/:projectId/updates', (req, res) => {
-  const { Update, sequelizeConnection, sequelize } = initializeSequelize();
-  sequelizeConnection.then(() =>
-    Update.findAll({
-      where: {
-        projectId: req.params.projectId
-      }
-    })
-      .then(updates => res.send(updates))
-      .then(() => sequelize.close())
-      .catch(err => console.error(err))
-  );
-});
+if (database === 'postgres') {
+
+  const initializeSequelize = require('../database/db.js');
+
+  app.get('/:projectId/updates', (req, res) => {
+    const { Update, sequelizeConnection, sequelize } = initializeSequelize();
+    sequelizeConnection.then(() =>
+      Update.findAll({
+        where: {
+          projectId: req.params.projectId
+        }
+      })
+        .then(updates => res.send(updates))
+        .then(() => sequelize.close())
+        .catch(err => console.error(err))
+    );
+  });
+
+  app.post('/api/:projectId/updates', (req, res) => { });
+
+  app.put('/api/:projectId/updates', (req, res) => {});
+
+  app.delete('/api/:projectId/updates', (req, res) => {});
+
+}
+
+if (database === 'mongo') {
+
+  const initializeSequelize = require('../database/db.js');
+
+  app.get('/:projectId/updates', (req, res) => {});
+
+  app.post('/:projectId/updates', (req, res) => {});
+
+  app.put('/:projectId/updates', (req, res) => {});
+
+  app.delete('/:projectId/updates', (req, res) => {});
+
+}
 
 app.listen(HOST_PORT, () => {
   console.log(`Listening at PORT: ${HOST_PORT}`);
