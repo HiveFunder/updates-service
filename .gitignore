@@ -27,3 +27,5 @@ build/
 public/bundle.js
 database/db.env.config.js
 
+
+database/updates.csv
