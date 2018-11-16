@@ -13,7 +13,8 @@
     "start:prod": "NODE_ENV=production node server/server.js",
     "seed": "mysql -u root < database/schema.sql && node database/seedGenerator.js",
     "test": "jest",
-    "testWatch": "jest --watch"
+    "testWatch": "jest --watch",
+    "data:gen":"node database/generate10Mdata.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

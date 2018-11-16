@@ -6,13 +6,17 @@ CREATE DATABASE kickstarter;
 DROP TABLE IF EXISTS updates;
 
 CREATE TABLE updates (
-  updatesId SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   projectId INT,
   postedBy VARCHAR(20),
-  title VARCHAR(100),
+  title VARCHAR(200),
   body TEXT,
   likes INT,
   pubDates DATE
 );
 
-COPY updates FROM './Users/Li/Desktop/updates-service/database/updates.csv'
+COPY updates(projectId, postedBy, title, body, likes, pubDates) FROM '/Users/Li/Desktop/updates-service/database/updates.csv' DELIMITERS ',' CSV;
+
+
+-- count table records
+-- select count (*) from updates;
