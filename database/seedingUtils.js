@@ -110,4 +110,6 @@ function generateAllSeedData(num) {
   return data;
 }
 
-module.exports = generateAllSeedData;
+module.exports.generateAllSeedData = generateAllSeedData;
+module.exports.randomDate = randomDate;
+module.exports.formatDateForSQL = formatDateForSQL;
