@@ -18,5 +18,15 @@ CREATE TABLE updates (
 COPY updates(projectId, postedBy, title, body, likes, pubDates) FROM '/Users/Li/Desktop/updates-service/database/updates.csv' DELIMITERS ',' CSV;
 
 
--- count table records
--- select count (*) from updates;
+-- Bash Commands PostGres
+
+-- SELECT COUNT (*) from updates; 		count table records
+-- SELECT * FROM updates WHERE id = 60000000;
+-- SELECT * FROM updates WHERE projectid = 10000000;
+-- CREATE INDEX projectid on updates(projectid);
+-- \d updates; 	describe table
+-- \dt    table list
+-- \di    index list
+-- \l  	list database
+-- \c kickstarter;		select database
+-- \timing

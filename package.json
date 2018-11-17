@@ -14,7 +14,9 @@
     "seed": "mysql -u root < database/schema.sql && node database/seedGenerator.js",
     "test": "jest",
     "testWatch": "jest --watch",
-    "data:gen":"node database/generate10Mdata.js"
+    "data:gen":"node database/generate10Mdata.js",
+    "postgod":"psql < database/schema2.sql",
+    "mongod":"mongoimport --db kickstarter --collection updates --type csv --fields `projectId,postedBy,title,body,likes,pubDates` --file /database/updates.csv"
   },
   "dependencies": {
     "axios": "^0.18.0",
