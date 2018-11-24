@@ -6,7 +6,7 @@ import Preview from './preview';
 
 /* eslint-disable */
 const HOST_URL = process.env.HOST_URL || 'http://localhost';
-const HOST_PORT = process.env.HOST_PORT || 3000;
+const HOST_PORT = process.env.HOST_PORT || 8080;
 let isLeft = true;
 /* eslint-enable */
 
@@ -26,7 +26,7 @@ class App extends React.Component {
     const splitURL = window.location.href.split('/');
     const projectId = Number(splitURL[splitURL.length - 1]) || 7;
     axios
-      .get(`${HOST_URL}:${HOST_PORT}/${projectId}/updates`)
+      .get(`${HOST_URL}:${HOST_PORT}/api/${projectId}/updates`)
       .then(updates => {
         this.setState({ updates: updates.data });
       })
