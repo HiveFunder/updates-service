@@ -6,6 +6,8 @@ npm
 npm-debug.log
 node_modules/
 
+package-lock.json
+
 pids
 *.pid
 logs
@@ -29,3 +31,7 @@ database/db.env.config.js
 
 
 database/updates.csv
+
+
+newrelic.js
+newrelic_agent.log

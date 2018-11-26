@@ -3,11 +3,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const newrelic = require('newrelic');
+const db = require('../database/postgres/index.js');
 
-// super test for server - fernando
-
-
-const database = 'postgres';
+// const database = 'postgres';
 
 const app = express();
 const port = 8080;
@@ -17,70 +16,74 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
+app.use('/api/:projectId', express.static(path.join(__dirname, '../public')));
 
-// app.get('/:projectId', (req, res) => {
+
+// if (database === 'postgres') {
+
+ 
+app.get('/api/:projectId/updates', (request, response) => {
+  const { projectId } = request.params;
+  // console.log(projectId)
+  // const projectId = request.params.projectId;
+  db.findUpdates(projectId, (error, results) => {
+    if (error) {
+      response.status(500).send(error);
+    } else {
+      response.status(200).send(results);
+    }
+  });
+});
+
+app.post('/api/:projectId/updates', (request, response) => {
+  const { projectId, postedBy, title, body, likes, pubDates } = request.body;
+  // const projectId = request.body.projectId;
+  // const postedBy = request.body.postedBy;
+  db.addUpdates(projectId, postedBy, title, body, likes, pubDates, (error, results) => {
+    if (error) {
+      response.status(500).send(error);
+    } else {
+      response.status(201).send('Posted!');
+    }
+  });
+});
+
+app.put('/api/:projectId/updates/:updateId', (request, response) => {
+  const { updateId } = request.params;
+  const { projectId, postedBy, title, body, likes, pubDates } = request.body;
+  db.modifyUpdates(updateId, projectId, postedBy, title, body, likes, pubDates, (error, results) => {
+    if (error) {
+      response.status(500).send(error);
+    } else {
+      response.status(202).send('Updated!');
+    }
+  });
+});
+
+app.delete('/api/:projectId/updates/:updateId', (request, response) => {
+  const { updateId } = request.params;
+  db.removeUpdates(updateId, (error, results) => {
+    if (error) {
+      response.status(500).send(error);
+    } else {
+      response.status(202).send('Deleted!');
+    }
+  });
+});
+
+// }
+
+app.listen(port, () => {
+  console.log(`Listening at PORT: ${port}`);
+});
+
+
+// super test for server - fernando
+
+// app.get('api/:projectId', (req, res) => {
+//   console.log('this works>>>>>>>>>>>>>>>')
 //   res.sendFile(path.resolve(__dirname, '../public/index.html'));
 // });
-
-if (database === 'postgres') {
-
-  const db = require('../database/postgres/index.js');
-
-
-  app.get('/api/:projectId/updates', (request, response) => {
-    const { projectId } = request.params;
-    // const projectId = request.params.projectId;
-    db.findUpdates(projectId, (error, results) => {
-      if (error) {
-        response.status(500).send(error);
-      } else {
-        response.status(201).send('Posted!');
-      }
-    });
-  });
-
-  app.post('/api/:projectId/updates', (request, response) => {
-    const { projectId, postedBy, title, body, likes, pubDates } = request.body;
-    const data = {
-      projectId,
-      postedBy,
-      
-    }
-    // const projectId = request.body.projectId;
-    // const postedBy = request.body.postedBy;
-    db.addUpdates(projectId, postedBy, title, body, likes, pubDates, (error, results) => {
-      if (error) {
-        response.status(500).send(error);
-      } else {
-        response.status(201).send('Posted!');
-      }
-    });
-  });
-
-  app.put('/api/:projectId/updates/:updateId', (request, response) => {
-    const { updateId } = request.params;
-    const { projectId, postedBy, title, body, likes, pubDates } = request.body;
-    db.modifyUpdates({ updateId }, { projectId, postedBy, title, body, likes, pubDates }, (error, results) => {
-      if (error) {
-        response.status(500).send(error);
-      } else {
-        response.status(202).send('Updated!');
-      }
-    });
-  });
-
-  app.delete('/api/:projectId/updates/:updateId', (request, response) => {
-    const { updateId } = request.params;
-    db.removeUpdates({ updateId }, (error, results) => {
-      if (error) {
-        response.status(500).send(error);
-      } else {
-        response.status(202).send('Deleted!');
-      }
-    });
-  });
-}
-
 
   // const projectId = request.params.id;
   // let data = {
@@ -172,7 +175,5 @@ if (database === 'postgres') {
 
 // }
 
-app.listen(port, () => {
-  console.log(`Listening at PORT: ${port}`);
-});
+
 

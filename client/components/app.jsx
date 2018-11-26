@@ -24,11 +24,13 @@ class App extends React.Component {
 
   componentDidMount() {
     const splitURL = window.location.href.split('/');
-    const projectId = Number(splitURL[splitURL.length - 1]) || 7;
+    const projectId = Number(splitURL[splitURL.length - 2]) || 7;
+    // console.log(projectId, splitURL)
     axios
       .get(`${HOST_URL}:${HOST_PORT}/api/${projectId}/updates`)
       .then(updates => {
-        this.setState({ updates: updates.data });
+        // console.log('message>>>>>>>>>>>>>>>>>>>>>', updates)
+        this.setState({ updates: updates.data.rows });
       })
       .catch(err => console.log(err));
   }
