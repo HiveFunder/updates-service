@@ -20,6 +20,10 @@ func.findUpdates = (projectId, callback) => {
     .catch((error) => callback(error, null));
 };
 
+// func.findUpdates = (projectId) => {
+//   const query = `SELECT * FROM updates WHERE projectid = ${projectId}`;
+//   return client.query(query);
+// };
 
 func.addUpdates = (projectId, postedBy, title, body, likes, pubDates, callback) => {
   const query = `INSERT INTO updates(projectId, postedBy, title, body, likes, pubDates) VALUES ($1, $2, $3, $4, $5, $6)`;
