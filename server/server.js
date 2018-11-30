@@ -20,7 +20,7 @@ app.use('/api/:projectId', express.static(path.join(__dirname, '../public')));
 
 
 // if (database === 'postgres') {
-app.get('/loaderio-1e376b56edec96e8afc5d4820d9f7530/', (request, response) => {
+app.get('/loaderio-361b5c6ef2b6fe496e8728b38c440e23.txt/', (request, response) => {
   response.sendFile(path.join(__dirname, '../loaderio.txt'));
 });
 
