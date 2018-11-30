@@ -9,7 +9,7 @@ const db = require('../database/postgres/index.js');
 // const database = 'postgres';
 
 const app = express();
-const port = 8080;
+const port = 3004;
 
 
 app.use(cors());
@@ -20,6 +20,10 @@ app.use('/api/:projectId', express.static(path.join(__dirname, '../public')));
 
 
 // if (database === 'postgres') {
+app.get('/loaderio-1e376b56edec96e8afc5d4820d9f7530/', (request, response) => {
+  response.sendFile(path.join(__dirname, '../loaderio.txt'));
+});
+
 
 app.get('/api/:projectId/updates', (request, response) => {
   const { projectId } = request.params;

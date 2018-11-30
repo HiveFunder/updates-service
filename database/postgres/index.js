@@ -1,8 +1,8 @@
 const { Client } = require('pg');
 
 const client = new Client({
+  host: '54.153.87.30',
   user: 'Li',
-  host: 'localhost',
   password: 'pw',
   database: 'kickstarter',
   port: 5432,
