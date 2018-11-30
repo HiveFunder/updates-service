@@ -9,7 +9,7 @@ const db = require('../database/postgres/index.js');
 // const database = 'postgres';
 
 const app = express();
-const port = 8080;
+const port = 3004 //8080;
 
 
 app.use(cors());

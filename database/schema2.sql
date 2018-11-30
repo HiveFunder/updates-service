@@ -15,7 +15,8 @@ CREATE TABLE updates (
   pubDates DATE
 );
 
-COPY updates(projectId, postedBy, title, body, likes, pubDates) FROM '/Users/Li/Desktop/updates-service/database/updates.csv' DELIMITERS ',' CSV;
+-- COPY updates(projectId, postedBy, title, body, likes, pubDates) FROM '/Users/Li/Desktop/updates-service/database/updates.csv' DELIMITERS ',' CSV;
+\COPY updates(projectId, postedBy, title, body, likes, pubDates) FROM '/Users/Li/Desktop/updates.csv' DELIMITERS ',' CSV;
 
 
 -- head updates.csv
