@@ -34,8 +34,8 @@ mysql.server start THEN mysql -u root
 | ------------- | -------------| ----------------| ---------------|
 | Create        | POST          | /api/:projectId/updates | insert new project update record |
 | Read          | GET           | /api/:projectId/updates | retrieve project updates information |
-| Update        | PUT           | /api/:projectId/updates | update an existing project updates |
-| Delete        | DELETE        | /api/:projectId/updates | delete a project update |
+| Update        | PUT           | /api/:projectId/updates/:updatesId | update an existing project updates |
+| Delete        | DELETE        | /api/:projectId/updates/:updatesId | delete a project update |
 
 
 ### GET REQUESTS

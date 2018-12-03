@@ -5,8 +5,8 @@ import styles from './app.css';
 import Preview from './preview';
 
 /* eslint-disable */
-const HOST_URL = process.env.HOST_URL || 'http://localhost';
-const HOST_PORT = process.env.HOST_PORT || 3000;
+const HOST_URL = process.env.HOST_URL || 'http://52.53.155.50';
+const HOST_PORT = process.env.HOST_PORT || 3004;
 let isLeft = true;
 /* eslint-enable */
 
@@ -24,11 +24,13 @@ class App extends React.Component {
 
   componentDidMount() {
     const splitURL = window.location.href.split('/');
-    const projectId = Number(splitURL[splitURL.length - 1]) || 7;
+    const projectId = Number(splitURL[splitURL.length - 2]) || 7;
+    // console.log(projectId, splitURL)
     axios
-      .get(`${HOST_URL}:${HOST_PORT}/${projectId}/updates`)
+      .get(`${HOST_URL}:${HOST_PORT}/api/${projectId}/updates`)
       .then(updates => {
-        this.setState({ updates: updates.data });
+        // console.log('message>>>>>>>>>>>>>>>>>>>>>', updates)
+        this.setState({ updates: updates.data.rows });
       })
       .catch(err => console.log(err));
   }
